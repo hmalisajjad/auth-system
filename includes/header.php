@@ -1,3 +1,9 @@
+<?php
+  
+  session_start()
+
+?>
+
 
 <!doctype html>
 <html lang="en">
@@ -11,15 +17,10 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/carousel/">
 
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css
+    " rel="stylesheet">
 
-    
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css
-" rel="stylesheet">
-
-
-<meta name="theme-color" content="#712cf9">
+    <meta name="theme-color" content="#712cf9">
 
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container">
@@ -34,22 +35,24 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
+        <?php if(!isset($_SESSION['username'])) : ?>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="login.php">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
+          <a class="nav-link" href="register.php">Register</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Username
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Logout</a></li>
-           
-          </ul>
-        </li>
-       
+        <?php else : ?>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <?php echo $_SESSION['username'] ?>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            
+            </ul>
+          </li>
+        <?php endif ; ?>
       </ul>
     </div>
   </div>
